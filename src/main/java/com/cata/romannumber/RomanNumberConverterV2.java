@@ -12,38 +12,36 @@ public class RomanNumberConverterV2 implements INumberConverter {
     @Override
     public String convert(int arg)
     {
-
         this.romanNumberIndex = 0;
         String result = "";
         for (int i = 0; i < 3; i++)
         {
             buffer = new StringBuilder();
             int mod = arg % 10;
-            appendNumber(mod);
+            calculateRomanNumberValueOfCurrentIndex(mod);
             this.romanNumberIndex+=2;
             result= buffer.toString() + result;
-
             arg = arg/10;
             if(arg == 0)
                 return result;
         }
         if(arg!= 0)
-            result = thousandValueOf(arg%10) + result;
+            result = calculateRomanNumberValueOfGivenThousandModulus(arg%10) + result;
         return result;
     }
 
-    private String thousandValueOf(int arg)
+    private String calculateRomanNumberValueOfGivenThousandModulus(int mod)
     {
-        if(arg > 4)
+        if(mod > 4)
             throw new IllegalArgumentException("only 0-4999 supported");
         String result = "";
-        for (int i = 0; i < arg; i++) {
+        for (int i = 0; i < mod; i++) {
             result+='M';
         }
         return result;
     }
 
-    private void appendNumber(int mod)
+    private void calculateRomanNumberValueOfCurrentIndex(int mod)
     {
         if(mod <= 3)
         {
