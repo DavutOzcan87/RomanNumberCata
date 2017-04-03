@@ -1,5 +1,6 @@
 package com.cata.romannumber;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -11,6 +12,14 @@ import static com.cata.romannumber.RomanNumberConverter.convert;
  */
 public class RomanNumberConverterTest
 {
+    INumberConverter converter;
+
+    @Before
+    public void init()
+    {
+        converter = o ->RomanNumberConverter.convert(o);
+    }
+
     @Test
     public void shouldConvert_1()
     {
